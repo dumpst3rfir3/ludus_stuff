@@ -12,4 +12,5 @@ This is just a personal repo to store configurations, scripts, etc. that I am us
         * The workstations include the Ludus additional tools (Office, Chrome, etc.)
     - 2 OUs, US and CA
     - 3 groups: Sales US, Sales CA, and IT
-    - 5 users in addition to the Ludus defaults (1 in Sales US, 1 in Sales CA, 3 in IT - one of whom is a DA)
+    - 5 user accounts in addition to the Ludus defaults (1 in Sales US, 1 in Sales CA, 3 in IT - one of whom is a DA)
+    - 2 additional domain accounts used as service accounts for FTP and IIS
