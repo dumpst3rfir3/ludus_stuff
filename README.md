@@ -1,6 +1,6 @@
 # Ludus Stuff
 
-This is just a personal repo I am using to store configurations, scripts, etc. that I am using for my homelab [Ludus](https://ludus.cloud/) setup. I am a fan of using Ludus for deploying Active Directory ranges in my homelab, it's worth checking out if you haven't yet.
+This is just a personal repo to store configurations, scripts, etc. that I am using for my homelab [Ludus](https://ludus.cloud/) setup. I am a fan of using Ludus for deploying Active Directory ranges in my homelab, it's worth checking out if you haven't yet.
 
 ## Configs
 
