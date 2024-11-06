@@ -127,3 +127,5 @@ ludus:
     domain:
       fqdn: dumpster.fire
       role: member
+    roles:
+      - badsectorlabs.ludus_mssql
