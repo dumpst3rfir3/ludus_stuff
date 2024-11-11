@@ -14,3 +14,7 @@ This is just a personal repo to store configurations, scripts, etc. that I am us
     - 3 groups: Sales US, Sales CA, and IT
     - 5 user accounts in addition to the Ludus defaults (1 in Sales US, 1 in Sales CA, 3 in IT - one of whom is a DA)
     - 2 additional domain accounts used as service accounts for FTP and IIS
+
+## Additional Scripts, etc.
+
+* **Fix-Bginfo.ps1:** I found that when RDPing (if that can be used as a verb?) into my VMs, bginfo would do lots of funky stuff, and apparently this is a known issue when you run bginfo on a machine with a high resolution. This script will replace the ludus `set-bg.ps1` script with a modified version that will NOT use bginfo if a high resolution is detected. **Run this as a domain admin from the DC** and it will modify `set-bg.ps1` on all machines.
