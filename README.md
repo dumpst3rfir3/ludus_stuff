@@ -16,6 +16,10 @@ This is just a personal repo to store configurations, scripts, etc. that I am us
     - 2 additional domain accounts used as service accounts for FTP and IIS
     - **OPTIONALLY** you can run the [Add-ExtraConfigForBasicAD.ps1](scripts/Add-ExtraConfigForBasicAD.ps1) script in the scripts folder (see description below) for some additional configurations
 
+## Specific Labs
+
+* [**Kerberoasting**](./kerberoasting): Very basic kerberoasting lab - navigate to the folder to see more info
+
 ## Additional Scripts, etc.
 
 * [**Fix-Bginfo.ps1**](scripts/Fix-Bginfo.ps1): I found that when RDPing (if that can be used as a verb?) into my VMs, bginfo would do lots of funky stuff, and apparently this is a known issue when you run bginfo on a machine using a high display resolution. This script will replace the ludus `set-bg.ps1` script with a modified version that will NOT use bginfo if a high resolution is detected. **Run this as a domain admin from the DC** and it will modify `set-bg.ps1` on all machines.
