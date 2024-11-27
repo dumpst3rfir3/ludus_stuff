@@ -7,7 +7,7 @@ This is just a personal repo to store configurations, scripts, etc. that I am us
 * **basic-ad-config.yml:** This is my config for a very basic Active Directory setup. It sets up:
     - A domain: dumpster.fire 
     - A DC running Windows Server 2022
-    - A basic Windows 2019 server with MS SQL installed
+    - A basic Windows 2019 server
     - 2 workstations, one running Windows 10 and the other running Windows 11
         * The workstations include the Ludus additional tools (Office, Chrome, etc.)
     - 2 OUs, US and CA
