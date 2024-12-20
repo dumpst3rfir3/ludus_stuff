@@ -13,7 +13,7 @@ This is just a personal repo to store configurations, scripts, etc. that I am us
     - 2 OUs, US and CA
     - 3 groups: Sales US, Sales CA, and IT
     - 5 user accounts in addition to the Ludus defaults (1 in Sales US, 1 in Sales CA, 3 in IT - one of whom is a DA)
-    - 2 additional domain accounts used as service accounts for FTP and IIS
+    - 1 additional domain account used intended to be used as service account for IIS (e.g., if you set up the [basic kerberoasting lab](kerberoasting/README.md))
     - **OPTIONALLY** you can run the [Add-ExtraConfigForBasicAD.ps1](scripts/Add-ExtraConfigForBasicAD.ps1) script in the scripts folder (see description below) for some additional configurations
 
 ## Specific Labs
