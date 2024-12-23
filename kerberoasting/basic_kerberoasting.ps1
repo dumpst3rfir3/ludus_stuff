@@ -21,3 +21,6 @@ Invoke-Command -ComputerName DF-SRV01-win2019.dumpster.fire -ScriptBlock {
     Set-WebConfigurationProperty -filter /system.WebServer/security/authentication/WindowsAuthentication -name useAppPoolCredentials -value true -location "IIS:\Sites\Default Web Site"
     iisreset
 }
+
+# Shout-out to this great blog post:
+# https://woshub.com/configuring-kerberos-authentication-on-iis-website/
