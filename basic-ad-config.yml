@@ -87,15 +87,6 @@ ludus:
               - Domain Users
               - IT
               - Domain Admins
-          - name: ftpsvc
-            firstname: FTP
-            surname: Service Account
-            display_name: FTP Service Account
-            password: "P@$$w0rd"
-            path: "DC=dumpster,DC=fire"
-            decription: "FTP Service Account"
-            groups:
-              - Domain Users
           - name: iissvc
             firstname: IIS
             surname: Service Account
