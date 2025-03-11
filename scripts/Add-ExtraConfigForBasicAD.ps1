@@ -21,5 +21,5 @@ foreach ($computer in $computers) {
 }
 
 Write-Output "Removing PSExec tools"
-Remove-Item -Force -Recurse .\PSTools
+Remove-Item -Force -Recurse .\PSTools*
 Write-Output "`n`nDone, have a nice day`n"
