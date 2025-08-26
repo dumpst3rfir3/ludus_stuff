@@ -7,7 +7,7 @@ out if you haven't yet.
 
 ## Configs
 
-* **basic-ad-config.yml:** This is my config for a very basic Active Directory setup. It sets up:
+* **[basic-ad-config.yml](basic-ad-config.yml):** This is my config for a very basic Active Directory setup. It sets up:
     - A domain: dumpster.fire 
     - A DC running Windows Server 2022
     - A basic Windows 2022 server
