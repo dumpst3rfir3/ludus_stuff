@@ -1,4 +1,9 @@
-Invoke-Command -ComputerName DF-SRV01-win2019.dumpster.fire -ScriptBlock {
+# Update with your server and domain names if different
+$iisServer = "SRV01"
+$rangeDomain = "dumpster.fire"
+Write-Output "Configuring IIS for Kerberos Authentication on $iisServer.$rangeDomain"
+
+Invoke-Command -ComputerName "$iisServer.$rangeDomain" -ScriptBlock {
     Install-WindowsFeature RSAT-AD-PowerShell -IncludeAllSubFeature
     Install-WindowsFeature Web-Windows-Auth
     Install-WindowsFeature Web-Server -IncludeManagementTools
@@ -6,15 +11,18 @@ Invoke-Command -ComputerName DF-SRV01-win2019.dumpster.fire -ScriptBlock {
     Set-WebConfigurationProperty -filter /system.WebServer/security/authentication/AnonymousAuthentication -name enabled -value false -location "IIS:\Sites\Default Web Site"
     Set-WebConfigurationProperty -filter /system.WebServer/security/authentication/WindowsAuthentication -name enabled -value true -location "IIS:\Sites\Default Web Site"
 }
-setspn.exe /s HTTP/DF-SRV01-win2019 dumpster.fire\iissvc
-setspn.exe /s HTTP/DF-SRV01-win2019.dumpster.fire dumpster.fire\iissvc
+setspn.exe /s "HTTP/$iisServer" "$rangeDomain\iissvc"
+setspn.exe /s "HTTP/$iisServer.$rangeDomain" "$rangeDomain\iissvc"
 setspn.exe /l iissvc
-Invoke-Command -ComputerName DF-SRV01-win2019.dumpster.fire -ScriptBlock {
+Invoke-Command -ComputerName "$iisServer.$rangeDomain" -ScriptBlock {
     Import-Module WebAdministration
     $appPoolName = "DefaultAppPool"
     $newIdentity = "SpecificUser"
-    $userName = "dumpster.fire\iissvc"
+
+    # Change user name and password if you used a different config
+    $userName = "$rangeDomain\iissvc"
     $password = 'P@$$w0rd'
+
     Set-ItemProperty "IIS:\AppPools\$appPoolName" -name "processModel.identityType" -value $newIdentity
     Set-ItemProperty "IIS:\AppPools\$appPoolName" -name "processModel.userName" -value $userName
     Set-ItemProperty "IIS:\AppPools\$appPoolName" -name "processModel.password" -value $password

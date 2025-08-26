@@ -1,4 +1,4 @@
-$computers = 'DF-WS01-WIN10', 'DF-WS02-WIN11', 'DF-SRV01-Win2019.dumpster.fire'
+$computers = Get-ADComputer -Filter * | Select-Object -ExpandProperty DNSHostName
 
 foreach ($computer in $computers) {
     Invoke-Command -ComputerName $computer -ScriptBlock {
