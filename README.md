@@ -19,9 +19,9 @@ out if you haven't yet.
     - 1 additional domain account intended to be used as a service account for IIS (e.g., if you set up the [basic kerberoasting lab](kerberoasting/README.md))
     - **OPTIONALLY** you can run the [Add-ExtraConfigForBasicAD.ps1](scripts/Add-ExtraConfigForBasicAD.ps1) script in the scripts folder (see description below) for some additional configurations
     
-    > [!IMPORTANT]
-    > To use this config, you will need to first add the `ludus-ad-content` Ansible role. Just clone [the repo](https://github.com/Cyblex-Consulting/ludus-ad-content) locally, then add it with:
-    > `ludus ansible role add -d /path/to/ludus-ad-content`
+> [!IMPORTANT]
+> To use this config, you will need to first add the `ludus-ad-content` Ansible role. Just clone [the repo](https://github.com/Cyblex-Consulting/ludus-ad-content) locally, then add it with:
+> `ludus ansible role add -d /path/to/ludus-ad-content`
 
 ## Specific Labs
 
