@@ -22,6 +22,7 @@ out if you haven't yet.
 > [!IMPORTANT]
 > To use this config, you will need to first add the `ludus-ad-content` Ansible role. Just clone [the repo](https://github.com/Cyblex-Consulting/ludus-ad-content) locally, then add it with:
 > `ludus ansible role add -d /path/to/ludus-ad-content`
+> See the [Ludus documentation](https://docs.ludus.cloud/docs/roles) for more info. 
 
 ## Specific Labs
 
