@@ -163,6 +163,28 @@ ludus:
     domain:
       fqdn: dumpster.fire
       role: member
+  - vm_name: "{{ range_id }}-kali-internal"
+    hostname: "{{ range_id }}-kali-internal"
+    template: kali-x64-desktop-template
+    vlan: 10
+    ip_last_octet: 99
+    ram_gb: 8
+    cpus: 4
+    linux: true
+    testing:
+      snapshot: false
+      block_internet: false
+  - vm_name: "{{ range_id }}-kali-external"
+    hostname: "{{ range_id }}-kali-external"
+    template: kali-x64-desktop-template
+    vlan: 99
+    ip_last_octet: 1
+    ram_gb: 8
+    cpus: 4
+    linux: true
+    testing:
+      snapshot: false
+      block_internet: false
 
 network:
   inter_vlan_default: REJECT
