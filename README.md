@@ -9,7 +9,7 @@ out if you haven't yet.
 
 ### Basic AD Config
 
-**[basic-ad-config.yml](basic-ad-config.yml):** 
+**[basic-ad-config.yml](basic-ad-config.yml)** 
 
 This is my config for a very basic Active Directory setup that simulates a small company with presence in the US and CA. It sets up:
   - A domain: dumpster.fire 
@@ -33,7 +33,7 @@ This is my config for a very basic Active Directory setup that simulates a small
 
 ## Basic AD Config with "Extras"
 
-**[basic-ad-config-with-extras.yml](basic-ad-with-attackers.yml):** 
+**[basic-ad-config-with-extras.yml](basic-ad-with-attackers.yml)** 
 
 This is still a pretty basic AD setup, but it adds a few things to the `basic-ad-config.yml` above:
   - Two Kali "attacker" machines:
