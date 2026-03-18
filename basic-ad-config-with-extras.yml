@@ -14,6 +14,7 @@ ludus:
       role: primary-dc
     roles:
       - ludus-ad-content
+      - extra-ad-config
     role_vars:
       ludus_ad:
         ous:
@@ -125,6 +126,8 @@ ludus:
     domain:
       fqdn: dumpster.fire
       role: member
+    roles:
+      - extra-ad-config
   - vm_name: "{{ range_id }}-WS01"
     hostname: "WS01"
     template: win11-22h2-x64-enterprise-template
@@ -145,6 +148,8 @@ ludus:
     domain:
       fqdn: dumpster.fire
       role: member
+    roles:
+      - extra-ad-config
   - vm_name: "{{ range_id }}-WS02"
     hostname: "WS02"
     template: win11-22h2-x64-enterprise-template
@@ -163,6 +168,24 @@ ludus:
     domain:
       fqdn: dumpster.fire
       role: member
+    roles:
+      - extra-ad-config
+  - vm_name: "{{ range_id }}-bloodhound"
+    hostname: "{{ range_id }}-bloodhound"
+    template: debian-12-x64-server-template
+    vlan: 10
+    ip_last_octet: 20
+    ram_gb: 8
+    cpus: 2
+    linux: true
+    testing:
+      snapshot: false
+      block_internet: false
+    roles:
+      - badsectorlabs.ludus_bloodhound_ce
+    role_vars:
+      ludus_bloodhound_port: "8080"
+      ludus_bloodhound_admin_password: "bloodhoundpassword"
   - vm_name: "{{ range_id }}-kali-internal"
     hostname: "{{ range_id }}-kali-internal"
     template: kali-x64-desktop-template
@@ -212,4 +235,19 @@ network:
       vlan_dst: 10
       protocol: all
       ports: all
+      action: ACCEPT
+    - name: Allow SRV01 to bloodhound for SharpHound ingest
+      vlan_src: 10
+      ip_last_octet_src: 15
+      vlan_dst: 10
+      ip_last_octet_dst: 20
+      protocol: tcp
+      ports: "8080"
+      action: ACCEPT
+    - name: Allow WireGuard clients to bloodhound UI
+      vlan_src: wireguard
+      vlan_dst: 10
+      ip_last_octet_dst: 20
+      protocol: tcp
+      ports: "8080"
       action: ACCEPT

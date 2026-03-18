@@ -1,0 +1,6 @@
+galaxy_info:
+  role_name: ludus_kerberoasting
+  author: Alex Garcia
+  description: Configures a basic Kerberoasting lab with IIS and a kerberoastable service account
+  min_ansible_version: "2.9"
+dependencies: []

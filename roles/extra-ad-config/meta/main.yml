@@ -1,0 +1,6 @@
+galaxy_info:
+  role_name: extra-ad-config
+  author: Alex Garcia
+  description: Extra AD configuration for basic AD lab
+  min_ansible_version: "2.9"
+dependencies: []

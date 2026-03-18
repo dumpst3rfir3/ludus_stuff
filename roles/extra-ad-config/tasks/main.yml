@@ -1,0 +1,69 @@
+- name: DC tasks - copy logon scripts to SYSVOL
+  ansible.windows.win_copy:
+    src: "{{ item }}"
+    dest: "\\\\dumpster.fire\\SYSVOL\\dumpster.fire\\scripts\\"
+  loop:
+    - Logon-MapDrives.ps1
+    - Logon-MapDrives.cmd
+  when: inventory_hostname == range_id + '-DC01'
+
+- name: DC tasks - set logon script for all People OU users
+  ansible.windows.win_shell: |
+    Get-ADUser -Filter * -SearchBase "OU=People,DC=dumpster,DC=fire" |
+        ForEach-Object { Set-ADUser $_ -ScriptPath "Logon-MapDrives.cmd" }
+  when: inventory_hostname == range_id + '-DC01'
+
+- name: SRV01 tasks - create shared folders
+  ansible.windows.win_file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - C:\SharedData
+    - C:\SharedAdminData
+    - C:\SharedSalesData
+  when: inventory_hostname == range_id + '-SRV01'
+
+- name: SRV01 tasks - create placeholder files
+  ansible.windows.win_copy:
+    content: "{{ item.content }}"
+    dest: "{{ item.dest }}"
+  loop:
+    - { dest: 'C:\SharedData\EmployeeDirectory.txt', content: 'This is the employee directory' }
+    - { dest: 'C:\SharedAdminData\AdminSecrets.txt', content: 'This is top secret admin data' }
+    - { dest: 'C:\SharedSalesData\SalesReportUS.txt', content: 'This is the US sales report' }
+    - { dest: 'C:\SharedSalesData\SalesReportCA.txt', content: 'This is the CA sales report' }
+  when: inventory_hostname == range_id + '-SRV01'
+
+- name: SRV01 tasks - create SMB shares
+  ansible.windows.win_shell: |
+    $shares = @(
+      @{ Name="InternalPublicData";  Path="C:\SharedData";      FullAccess=@("Everyone") },
+      @{ Name="InternalAdminData";   Path="C:\SharedAdminData"; FullAccess=@("dumpster\IT","dumpster\Domain Admins") },
+      @{ Name="InternalSalesData";   Path="C:\SharedSalesData"; FullAccess=@("dumpster\Sales CA","dumpster\Sales US","dumpster\Domain Admins"); ReadAccess=@("dumpster\IT") }
+    )
+    foreach ($share in $shares) {
+      if (-not (Get-SmbShare -Name $share.Name -ErrorAction SilentlyContinue)) {
+        $params = @{ Name=$share.Name; Path=$share.Path; FullAccess=$share.FullAccess }
+        if ($share.ReadAccess) { $params.ReadAccess = $share.ReadAccess }
+        New-SmbShare @params
+      }
+    }
+  when: inventory_hostname == range_id + '-SRV01'
+
+- name: SRV01/WS01/WS02 tasks - add domain groups to local Administrators
+  ansible.windows.win_group_membership:
+    name: Administrators
+    members:
+      - "dumpster\\Domain Admins"
+      - "dumpster\\IT"
+    state: present
+  when: inventory_hostname != range_id + '-DC01'
+
+- name: WS01/WS02 tasks - add domain groups to Remote Desktop Users
+  ansible.windows.win_group_membership:
+    name: Remote Desktop Users
+    members:
+      - "dumpster\\Sales CA"
+      - "dumpster\\Sales US"
+    state: present
+  when: inventory_hostname in [range_id + '-WS01', range_id + '-WS02']
