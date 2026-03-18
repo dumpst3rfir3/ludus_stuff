@@ -50,9 +50,10 @@ This is still a pretty basic AD setup, but it adds a few things to the `basic-ad
 > [!IMPORTANT]
 > To use this config, you will need to first add the `ludus-ad-content` Ansible role, just like the Basic AD Config above (see the instructions there), but the `extra-ad-config` must also be added:
 >
-> `# Assuming this is executed from the root of this repo`
->
-> `ludus ansible role add -d ./roles/extra-ad-config --force`
+> ```
+> # Assuming this is executed from the root of this repo
+> ludus ansible role add -d ./roles/extra-ad-config --force
+> ```
 >
 > Additionally, for Bloodhound, the publicly-available `badsectorlabs.ludus_bloodhound_ce` role needs to be added:
 >
