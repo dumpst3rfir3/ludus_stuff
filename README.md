@@ -42,7 +42,7 @@ This is still a pretty basic AD setup, but it adds a few things to the `basic-ad
       internal attacks (hash relaying, etc.)
     * `{{ range_id }}-kali-internal`: a Kali machine on an "external" network,
         simulating an outside attacker
-  - A Debian server that runs [Bloodhound CE](https://specterops.io/oodhound-community-edition/) on port 8080 with a default admin password of loodhoundpassword`
+  - A Debian server that runs [Bloodhound CE](https://specterops.io/oodhound-community-edition/) on port 8080 with a default admin password of `bloodhoundpassword`
   - Three SMB shares on `SRV01`: a public share for all employees, one for sales ployees, and one for admins
   - Both of Sales groups are added to the local `Remote Desktop Users` group on workstations so that those accounts can be used for RDP
   - The `IT` group is added to the local `Administrators` group on all machines except the domain controller
