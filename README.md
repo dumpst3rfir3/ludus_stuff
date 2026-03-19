@@ -33,7 +33,7 @@ This is my config for a very basic Active Directory setup that simulates a small
 
 ## Basic AD Config with "Extras"
 
-**[basic-ad-config-with-extras.yml](basic-ad-with-attackers.yml)** 
+**[basic-ad-config-with-extras.yml](basic-ad-config-with-extras.yml)** 
 
 This is still a pretty basic AD setup, but it adds a few things to the `basic-ad-config.yml` above:
   - Two Kali "attacker" machines:
